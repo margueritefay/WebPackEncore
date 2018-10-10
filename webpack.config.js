@@ -18,17 +18,22 @@ Encore
      * and one CSS file (e.g. app.css) if you JavaScript imports CSS.
      */
      //will create public/build/rep_log.js
+    .addEntry('layout', './assets/js/layout.js')
     .addEntry('rep_log', './assets/js/rep_log.js')
     .addEntry('login', './assets/js/login.js')
-    .addEntry('layout', './assets/js/layout.js')
 
     .enableBuildNotifications()
+    .enableSassLoader()
+    .enableSourceMaps(!Encore.isProduction())
 
     .autoProvidejQuery()
     .addPlugin(new CopyWebpackPlugin([
 
         { from: './assets/static', to: 'static' }
     ]))
+
+    .cleanupOutputBeforeBuild()
+    .enableVersioning()
 ;
 
 module.exports = Encore.getWebpackConfig();
